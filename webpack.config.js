@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const apiMocker = require("connect-api-mocker");
 
 const constants = require("./src/webpack/directoryConstants");
 const banner = require(`${constants.WEBPACK_DIR}/banner`);
@@ -35,4 +36,9 @@ module.exports = {
     ...htmlPlugins,
     new CleanWebpackPlugin(),
   ],
+  devServer: {
+    before: (app, server, compiler) => {
+      app.use(apiMocker("/api", "mocks/api"));
+    },
+  },
 };
