@@ -10,6 +10,7 @@ const htmlPlugins = require(`${constants.WEBPACK_DIR}/html-webpack-plugin`);
 
 const mode = process.env.NODE_ENV || "development";
 
+console.log(entry);
 module.exports = {
   mode,
   entry,

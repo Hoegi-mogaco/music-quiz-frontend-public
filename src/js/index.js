@@ -1,4 +1,7 @@
+import CommonDOM from "./common/common.js";
 import SongAPIHandler from "./api/SongAPIHandler.js";
+
+CommonDOM.setCommonDOM();
 
 const songHandler = new SongAPIHandler();
 
