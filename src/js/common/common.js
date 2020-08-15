@@ -13,6 +13,11 @@ const CommonDOM = {
       document.body.prepend(header);
     }
   },
+
+  renderView(view, target) {
+    this.setCommonDOM();
+    document.addEventListener("DOMContentLoaded", () => view.init(target));
+  },
 };
 
 export default CommonDOM;

@@ -1,33 +1,52 @@
 import CommonDOM from "./common/common.js";
+import SongAPIHandler from "./api/SongAPIHandler.js";
 
-CommonDOM.setCommonDOM();
-
-const Form = {
+const FormView = {
   init(form) {
     this.form = form;
+    this.onChangeFile();
+    this.onSubmitForm();
+  },
+
+  onChangeFile() {
     this.form.file.addEventListener("change", (e) => {
-      const fileInput = this.form.file;
-      const fileSize = fileInput.files[0].size;
-      if (fileSize > 100 * 1024) {
-        alert("100KB 이하의 파일을 사용해주세요");
-        fileInput.value = null;
-      }
+      this.checkFileSize();
     });
   },
 
-  onSubmit(e) {
-    e.preventDefault();
-    console.log(this.form.title.value);
-    console.log(this.form.artist.value);
-    console.dir(this.form.file.files[0]);
-    console.log(this.form.hint1.value);
-    console.log(this.form.hint2.value);
+  checkFileSize() {
+    const fileInput = this.form.file;
+    const fileSize = fileInput.files[0].size;
+    if (fileSize > 100 * 1024) {
+      alert("100KB 이하의 파일을 사용해주세요");
+      fileInput.value = null;
+    }
+  },
 
-    debugger;
+  onSubmitForm() {
+    this.form.addEventListener("submit", (e) => this.onSubmit(e));
+  },
+
+  async onSubmit(e) {
+    e.preventDefault();
+    const title = this.form.title.value;
+    const artist = this.form.artist.value;
+    const file = this.form.file.files[0];
+    const hint1 = this.form.hint1.value;
+    const hint2 = this.form.hint2.value;
+
+    const song = {
+      title,
+      artist,
+      file,
+      hint1,
+      hint2,
+    };
+
+    const response = await new SongAPIHandler().postSong(song);
+
+    window.location.href = "/";
   },
 };
 
-Form.init(document.forms[0]);
-Form.form.addEventListener("submit", (e) => {
-  Form.onSubmit(e);
-});
+CommonDOM.renderView(FormView, document.forms[0]);

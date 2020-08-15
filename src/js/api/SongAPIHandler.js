@@ -13,4 +13,13 @@ export default class SongAPIHandler {
 
     return songCount.count;
   }
+
+  async postSong(song) {
+    const response = await fetch("/api/songs", {
+      method: "POST",
+      body: JSON.stringify(song),
+    }).then((response) => response.json());
+
+    return response;
+  }
 }
