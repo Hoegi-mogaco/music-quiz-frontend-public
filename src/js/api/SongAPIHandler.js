@@ -20,6 +20,8 @@ export default class SongAPIHandler {
       body: JSON.stringify(song),
     }).then((response) => response.json());
 
+    setTimeout(() => {}, 200);
+
     return response;
   }
 }

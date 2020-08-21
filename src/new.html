@@ -8,11 +8,26 @@
   <body>
     <div id="app">
       <form>
-        <input type="text" name="title" id="" required />
-        <input type="text" name="artist" id="" required />
-        <input type="file" name="file" id="" accept="audio/*" required />
-        <input type="text" name="hint1" id="" />
-        <input type="text" name="hint2" id="" />
+        <label>
+          제목
+          <input type="text" name="title" id="title" required />
+        </label>
+        <label>
+          아티스트
+          <input type="text" name="artist" id="artist" required />
+        </label>
+        <label>
+          파일
+          <input type="file" name="file" id="file" accept="audio/*" required />
+        </label>
+        <label>
+          힌트 1(선택)
+          <input type="text" name="hint1" id="hint1" />
+        </label>
+        <label>
+          힌트 2(선택)
+          <input type="text" name="hint2" id="hint2" disabled />
+        </label>
         <button type="submit">신청하기</button>
       </form>
     </div>
