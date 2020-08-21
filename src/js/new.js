@@ -1,3 +1,3 @@
-const { default: FormView } = require("./view/FormView");
+import FormView from "./view/FormView.js";
 
 new FormView().renderView();
