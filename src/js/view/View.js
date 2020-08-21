@@ -5,6 +5,12 @@ export default class View {
 
   renderHeader() {
     const header = document.createElement("header");
+    header.classList.add(
+      "container",
+      "max-w-full",
+      "bg-purple-500",
+      "bg-opacity-75"
+    );
     const h1 = document.createElement("h1");
     const linkToIndex = document.createElement("a");
     linkToIndex.href = "/";
