@@ -1,6 +1,6 @@
 export default class View {
   constructor() {
-    this.renderHeader();
+    this.header = this.renderHeader();
   }
 
   renderHeader() {
@@ -17,10 +17,13 @@ export default class View {
     linkToIndex.innerHTML = "음악 퀴즈";
     h1.appendChild(linkToIndex);
     header.appendChild(h1);
-    document.body.prepend(header);
+    return header;
   }
 
   renderView(target) {
-    document.addEventListener("DOMContentLoaded", () => this.init(target));
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.prepend(this.header);
+      this.init(target);
+    });
   }
 }
