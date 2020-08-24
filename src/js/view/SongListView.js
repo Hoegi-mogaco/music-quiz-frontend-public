@@ -11,18 +11,29 @@ export default class SongListView extends View {
     this.page = 1;
   }
 
-  init() {
-    this.renderList();
+  async init() {
+    this.onSearch();
+    await this.loadList();
+    this.renderList(this.songList);
   }
 
-  async renderList() {
-    const list = document.querySelector("div#song-list");
+  onSearch() {
+    const searchInput = document.getElementById("song-search");
+    searchInput.addEventListener(
+      "keyup",
+      delay((e) => {
+        this.searchList(searchInput.value);
+      }, 500)
+    );
+  }
 
-    if (this.songList.length === 0) {
-      await this.loadList();
-    }
-    list.innerHTML = this.getSongListHtml();
-    this.renderPageButton();
+  searchList(keyword) {
+    const list = this.songList.filter(
+      (song) =>
+        song.title.indexOf(keyword) >= 0 || song.artist.indexOf(keyword) >= 0
+    );
+    this.page = 1;
+    this.renderList(list);
   }
 
   async loadList() {
@@ -30,11 +41,17 @@ export default class SongListView extends View {
     this.songList = songList;
   }
 
-  getSongListHtml() {
+  async renderList(songList) {
+    const songListDiv = document.getElementById("song-list");
+    songListDiv.innerHTML = this.getSongListHtml(songList);
+    this.renderPageButton(songList);
+  }
+
+  getSongListHtml(songList) {
     const startIndex = (this.page - 1) * this.SONG_PER_PAGE;
     const endIndex = startIndex + this.SONG_PER_PAGE;
 
-    const songToRender = this.songList.slice(startIndex, endIndex);
+    const songToRender = songList.slice(startIndex, endIndex);
 
     return (
       songToRender.reduce((html, song) => {
@@ -63,10 +80,9 @@ export default class SongListView extends View {
     );
   }
 
-  renderPageButton() {
+  renderPageButton(songList) {
     const pageNavigator = document.querySelector("div#page-navigator");
-    let totalPages =
-      Math.trunc((this.songList.length - 1) / this.SONG_PER_PAGE) + 1;
+    let totalPages = Math.trunc((songList.length - 1) / this.SONG_PER_PAGE) + 1;
     totalPages = Math.max(1, totalPages);
 
     const minPage = this.page - ((this.page - 1) % this.BUTTONS_TO_SHOW);
@@ -93,7 +109,7 @@ export default class SongListView extends View {
       pageButton.innerHTML = i;
       pageButton.addEventListener("click", () => {
         this.page = i;
-        this.renderList();
+        this.renderList(songList);
       });
       pageButtons.push(pageButton);
     }
@@ -110,4 +126,13 @@ export default class SongListView extends View {
       pageNavigator.appendChild(nextButton);
     }
   }
+}
+
+function delay(func, ms) {
+  let timer = 0;
+  console.log("Delay", func, ms);
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(func.bind(this, ...args), ms || 0);
+  };
 }
