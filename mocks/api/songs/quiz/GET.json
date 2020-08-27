@@ -1,8 +1,14 @@
 [
   {
     "id": 1,
-    "link": "https://freepd.com/music/Spring%20Chicken.mp3"
+    "link": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/none_given/TRG_Banks/TRG_Banks_-_Singles/TRG_Banks_-_Grandpas_great_escape.mp3"
   },
-  { "id": 2, "link": "https://freepd.com/music/Spring%20Chicken.mp3" },
-  { "id": 4, "link": "https://freepd.com/music/Spring%20Chicken.mp3" }
+  {
+    "id": 2,
+    "link": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/none_given/TRG_Banks/TRG_Banks_-_Singles/TRG_Banks_-_Fergus_OReilly.mp3"
+  },
+  {
+    "id": 4,
+    "link": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/none_given/TRG_Banks/TRG_Banks_-_Singles/TRG_Banks_-_Ring_road.mp3"
+  }
 ]

@@ -1,16 +1,40 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Header from "./components/Header.js";
-import QuizApp from "./components/QuizApp.js";
+import Header from "../js/components/Header.js";
+import Quiz from "../js/components/Quiz.js";
 
-class Quiz extends React.Component {
+class App extends React.Component {
   constructor() {
     super();
     this.state = {
       songs: [],
       currentIndex: 0,
     };
+  }
+
+  render() {
+    if (this.state.songs.length === 0) {
+      return (
+        <div>
+          <Header />
+          Loading...
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Header />
+          <Quiz
+            song={this.state.songs[this.state.currentIndex]}
+            currentIndex={this.state.currentIndex}
+            totalSongs={this.state.songs.length}
+            nextSong={this.nextSong.bind(this)}
+          />
+          <button onClick={this.onClickButton.bind(this)}>index</button>
+        </div>
+      );
+    }
   }
 
   async componentDidMount() {
@@ -20,19 +44,6 @@ class Quiz extends React.Component {
     });
   }
 
-  render() {
-    if (this.state.songs.length === 0) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-        <div>
-          <Header />
-          <QuizApp song={this.state.songs[this.state.currentIndex]} />
-        </div>
-      );
-    }
-  }
-
   async fetchSongs() {
     const response = await fetch("/api/songs/quiz").then((response) =>
       response.json()
@@ -40,6 +51,22 @@ class Quiz extends React.Component {
 
     return response;
   }
+
+  nextSong() {
+    this.increaseIndex();
+  }
+
+  increaseIndex() {
+    this.setState({
+      currentIndex: ++this.state.currentIndex,
+    });
+  }
+
+  onClickButton() {
+    this.setState({
+      currentIndex: ++this.state.currentIndex,
+    });
+  }
 }
 
-ReactDOM.render(<Quiz />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("app"));
