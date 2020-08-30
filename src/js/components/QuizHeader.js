@@ -2,10 +2,8 @@ import React from "react";
 
 export default function QuizHeader(props) {
   return (
-    <div>
-      <h2>
-        {props.currentIndex} / {props.totalSongs}
-      </h2>
-    </div>
+    <h2 className="font-semibold text-gray-900 text-4xl mb-4">
+      {props.currentIndex} / {props.totalSongs}
+    </h2>
   );
 }

@@ -7,28 +7,63 @@
   </head>
   <body>
     <div id="app">
-      <form>
+      <form class="flex flex-col max-w-full">
         <label>
-          제목
-          <input type="text" name="title" id="title" required />
+          <span>제목</span>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            required
+            class="border border-solid border-black"
+          />
         </label>
         <label>
-          아티스트
-          <input type="text" name="artist" id="artist" required />
+          <span>아티스트</span>
+          <input
+            type="text"
+            name="artist"
+            id="artist"
+            required
+            class="border border-solid border-black"
+          />
         </label>
         <label>
-          파일
-          <input type="file" name="file" id="file" accept="audio/*" required />
+          <span>파일</span>
+          <input
+            type="file"
+            name="file"
+            id="file"
+            accept="audio/*"
+            required
+            class="border border-solid border-black max-w-full"
+          />
         </label>
         <label>
-          힌트 1(선택)
-          <input type="text" name="hint1" id="hint1" />
+          <span>힌트 1(선택)</span>
+          <input
+            type="text"
+            name="hint1"
+            id="hint1"
+            class="border border-solid border-black"
+          />
         </label>
         <label>
-          힌트 2(선택)
-          <input type="text" name="hint2" id="hint2" disabled />
+          <span>힌트 2(선택)</span>
+          <input
+            type="text"
+            name="hint2"
+            id="hint2"
+            disabled
+            class="border border-solid border-black"
+          />
         </label>
-        <button type="submit">신청하기</button>
+        <button
+          type="submit"
+          class="border border-gray-900 w-3/4 self-center py-2 text-gray-900"
+        >
+          신청하기
+        </button>
       </form>
     </div>
   </body>

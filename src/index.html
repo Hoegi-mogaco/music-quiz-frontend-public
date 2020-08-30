@@ -4,16 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>음악 퀴즈</title>
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/tailwind.css" />
   </head>
   <body>
     <div id="app">
-      <div>
-        <h2>총 <span id="song-count">10000</span>곡 도전 가능</h2>
-        <ul class="links">
-          <li><a href="quiz.html">퀴즈 풀기</a></li>
-          <li><a href="new.html">새 노래 신청</a></li>
-          <li><a href="find.html">신청 목록</a></li>
+      <div class="flex flex-col items-center justify-center">
+        <h2 class="my-10 text-xl font-light">
+          총 <span id="song-count" class="font-light">10000</span>곡 도전 가능
+        </h2>
+        <ul class="links w-1/2">
+          <li>
+            <a
+              href="quiz.html"
+              class="border border-solid border-red-500 rounded text-xs px-2 py-1 my-2 block text-center"
+              >퀴즈 풀기</a
+            >
+          </li>
+          <li>
+            <a
+              href="new.html"
+              class="border border-solid border-red-500 rounded text-xs px-2 py-1 my-2 block text-center"
+              >새 노래 신청</a
+            >
+          </li>
+          <li>
+            <a
+              href="find.html"
+              class="border border-solid border-red-500 rounded text-xs px-2 py-1 my-2 block text-center"
+              >신청 목록</a
+            >
+          </li>
         </ul>
       </div>
     </div>

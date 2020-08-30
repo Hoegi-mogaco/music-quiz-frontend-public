@@ -1,4 +1,4 @@
 import IndexView from "./view/IndexView.js";
-import "../css/index.css";
+import "../css/tailwind.css";
 
 new IndexView().renderView();

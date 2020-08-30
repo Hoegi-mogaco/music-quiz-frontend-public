@@ -37,10 +37,16 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "autoprefixer": "^9.8.6",
+    "install": "^0.13.0",
+    "npm": "^6.14.8",
     "postcss-loader": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "sweetalert": "^2.1.2",
     "tailwindcss": "^1.7.3"
   }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import swal from "sweetalert";
 
 export default function AnswerForm(props) {
   const onSubmit = async (e) => {
@@ -6,7 +7,12 @@ export default function AnswerForm(props) {
     const answerInput = document.getElementById("answer");
     const userAnswer = answerInput.value;
     if (!userAnswer) {
-      alert("답을 입력해주세요");
+      swal({
+        title: "답을 입력해주세요",
+        button: "돌아가기",
+        icon: "warning",
+      });
+      return;
     }
 
     const body = {
@@ -22,18 +28,40 @@ export default function AnswerForm(props) {
     const isCorrect = response.correct;
 
     if (isCorrect) {
-      alert("정답!");
-      props.nextSong();
-      answerInput.value = "";
+      swal({
+        closeOnClickOutside: false,
+        title: "정답!",
+        text: `${response.artist} - ${response.title}`,
+        icon: "success",
+        button: "다음 문제",
+      }).then((value) => {
+        props.setQuizResult(isCorrect);
+        props.nextSong();
+      });
     } else {
-      alert("틀렸습니다.");
+      swal({
+        title: "틀렸습니다!",
+        text: "다시 한 번 확인해보세요",
+        button: "다시 도전",
+        icon: "error",
+      });
     }
   };
 
   return (
-    <form>
-      <input id="answer" type="text" />
-      <button onClick={onSubmit}>정답 확인</button>
+    <form className="w-4/5">
+      <input
+        id="answer"
+        type="text"
+        className="border border-black border-solid focus:b-10 px-2 py-1 block w-full"
+        autoComplete="off"
+      />
+      <button
+        onClick={onSubmit}
+        className="border border-solid border-blue-500 mt-1 px-2 py-2 w-full text-xs"
+      >
+        정답 확인
+      </button>
     </form>
   );
 }
